@@ -222,46 +222,61 @@ INSERT INTO autor (idAutor, nombre, apellidoP, universidad, especialidad) VALUES
 (29, 'Zar', 'Díaz', 21, 16),
 (30, 'Romel', 'Volteck', 23, 15);
 
+DROP TABLE IF EXISTS idioma;
+CREATE TABLE idioma(
+    idIdioma int(10) unsigned NOT NULL,
+    idioma varchar(45) NOT NULL,
+    PRIMARY KEY (idIdioma)
+    );
+    
+INSERT INTO idioma (idIdioma, idioma) VALUES
+(01, 'Español'),
+(02, 'Inglés'),
+
 DROP TABLE IF EXISTS articulos;
 CREATE TABLE articulos(
     idArticulo int(10) unsigned NOT NULL,
     titulo varchar(400) NOT NULL,
     autor int,
     fechaPublicacion date NOT NULL,
+    volumen int NOT NULL;
+    abstract varchar NOT NULL;
+    idioma int(5) NOT NULL;
     PRIMARY KEY (idArticulo),
-    FOREIGN KEY (autor) REFERENCES autor(idAutor));
+    FOREIGN KEY (autor) REFERENCES autor(idAutor)
+    FOREIGN KEY (idioma) REFERENCES idioma(idIdioma));
 
-INSERT INTO articulos (idArticulo, titulo, autor, fechaPublicacion) VALUES
-(01, '4 tips para potenciar la colaboración humano + máquina en tu empresa', 01, '2022-03-12'),
-(02, 'Computación Cuántica, la Revolución Tecnológica que cambiará el mundo', 02, '2021-10-17'),
-(03, 'Automatización, la clave de una empresa productiva', 03, '2020-12-14'),
-(04, '¿Es posible revertir el envejecimiento?', 04, '2020-04-23'),
-(05, '3 empresas que domesticaron Big Data a la perfección', 05, '2020-05-27'),
-(06, 'This Week’s Awesome Tech Stories From Around the Web (Through September 24)', 06, '2020-07-25'),
-(07, 'Scientists Engineer Bacteria to Recycle Plastic Waste Into Valuable Chemicals', 07, '2021-06-18'),
-(08, 'There Are Cheaper, More Sustainable Ways Than Desalination to Meet Our Water Needs', 08, '2020-12-17'),
-(09, 'The Tech That Will Push VR to the Limits of the Human Eye', 09, '2020-10-30'),
-(10, 'A Massive Carbon Capture Plant in Wyoming Will Pull 5 Million Tons of CO2 From the Air Each Year', 10, '2017-12-18'),
-(11, 'OpenAI Says DALL-E Is Generating Over 2 Million Images a Day—and That’s Just Table Stakes', 11, '2018-12-10'),
-(12, 'This Week’s Awesome Tech Stories From Around the Web (Through July 30)', 12, '2019-05-15'),
-(13, 'This Exoskeleton Uses AI to Help People Walk Faster With Less Energy', 13, '2018-12-17'),
-(14, '800,000 Neurons in a Dish Learned to Play Pong in Just Five Minutes', 14, '2017-03-18'),
-(15, 'This Week’s Awesome Tech Stories From Around the Web (Through August 6)', 15, '2018-05-18'),
-(16, 'Fintech es el futuro de la economía', 16, '2018-07-07'),
-(17, 'El liderazgo después de la pandemia', 17, '2018-11-18'),
-(18, 'Biofeedback y Neurofeedback, los nuevos jugadores contra el estrés', 18, '2021-04-13'),
-(19, 'La inteligencia Artificial como herramienta contra el Parkinson', 19, '2018-12-11'),
-(20, 'Olvidar para mejorar, así es el unlearning empresarial', 20, '2023-01-04'),
-(21, '¿Cómo será el trabajo después del COVID?', 21, '2018-04-02'),
-(22, '3 Empresas que han usado el Internet de las cosas a su favor. ¿Tu empresa será la cuarta?', 22, '2021-04-22'),
-(23, '3 Medidas de ciberseguridad para blindar tu empresa', 23, '2014-06-19'),
-(24, 'Medicina Personalizada, el arma secreta de la salud', 24, '2017-09-19'),
-(25, 'Estrés Laboral en 2021', 25,'2014-08-15'),
-(26, 'Un negocio con Inteligencia Artificial', 26, '2017-04-12'),
-(27, 'These 2021 Biotech Breakthroughs Will Shape the Future of Health and Medicine', 27, '2019-11-13'),
-(28, 'Moderna Will Develop mRNA Vaccines for 15 of the World’s Worst Diseases', 28, '2019-12-10'),
-(29, 'Estonia Is a ‘Digital Republic’—What That Means and Why It May Be Everyone’s Future', 29, '2018-07-06'),
-(30, 'The UK May Build a £16 Billion Solar Power Station in Space. Here’s How It Would Work', 30, '2018-04-27');
+INSERT INTO articulos (idArticulo, titulo, autor, fechaPublicacion, idioma, volumen, abstract) VALUES
+(01, '4 tips para potenciar la colaboración humano + máquina en tu empresa', 01, '2022-03-12', 01, 1536, 'El trabajo en equipo se da cuando un grupo de personas trabaja en conjunto hacia un objetivo colectivo de manera eficiente. Sigue leyendo y descubre los 11 beneficios principales del trabajo en equipo en una empresa y los ejemplos de cada uno. '),
+(02, 'Computación Cuántica, la Revolución Tecnológica que cambiará el mundo', 02, '2021-10-17', 01, 1422, 'El mundo de la informática se prepara para una profunda revolución con la llegada de la computación cuántica, una computadora capaz de resolver en segundos un problema matemático que a un ordenador clásico le llevaría 10.000 años.'),
+(03, 'Automatización, la clave de una empresa productiva', 03, '2020-12-14', 01, 1332, 'Automatizar es integrar la tecnología de softwares o maquinaria para hacer actividades más rápidas, a un menor costo, aumentando la productividad y con la menor intervención humana.Si estás pensando cómo sacarle el mayor beneficio a la automatización, aquí te decimos los puntos que deberías considerar.'),
+(04, '¿Es posible revertir el envejecimiento?', 04, '2020-04-23', 01, 5455, 'Los resultados de este estudio, publicado en la revista científica Cell, ponen de manifiesto que la expresión de determinados genes asociados con un estado embrionario puede revertir el envejecimiento.'),
+(05, '3 empresas que domesticaron Big Data a la perfección', 05, '2020-05-27', 01, 1234, 'Series al gusto de usuarios, prendas adaptadas a las distintas tipologías de deportistas, fondos de armario que se gestionan solos a partir de tus parámetros de estilo… Analizamos cinco estrategias de big data.'),
+(06, 'This Week’s Awesome Tech Stories From Around the Web (Through September 24)', 06, '2020-07-25', 02, 4517, 'The competition to create ever smaller, ever better robots is a fierce one, and Cornell University is out front now with a set of bots small enough to sit on a human hair but that can move on their own using nothing but light as a power source.'),
+(07, 'Scientists Engineer Bacteria to Recycle Plastic Waste Into Valuable Chemicals', 07, '2021-06-18', 02, 7524, 'A combination of chemical catalysts and engineered bacteria has been used to convert a mix of common plastic rubbish into a useful product. The technique could be adapted for other plastics or to make different materials.'),
+(08, 'There Are Cheaper, More Sustainable Ways Than Desalination to Meet Our Water Needs', 08, '2020-12-17', 02,1286, 'Finding ways to get people to use less water could reduce existing demand by 30-50 percent in many urban areas that have already begun conservation efforts. Second, recycling or reusing treated wastewater is often less expensive than desalination.'),
+(09, 'The Tech That Will Push VR to the Limits of the Human Eye', 09, '2020-10-30', 02, 7245, 'Big tech is eager to get us excited about the coming of the metaverse, but today’s virtual reality hardware is a long way from meeting their ambitious goals. One of the biggest challenges is building better displays with far more pixels per inch, but experts say new materials and designs are on the way.'),
+(10, 'A Massive Carbon Capture Plant in Wyoming Will Pull 5 Million Tons of CO2 From the Air Each Year', 10, '2017-12-18', 02, 5774, 'A couple of climate tech startups plan to suck a hell of a lot of carbon dioxide out of the air and trap it underground in Wyoming. The goal of the new endeavor, called Project Bison, is to build a new facility capable of drawing down 5 million metric tons of carbon dioxide annually by 2030.'),
+(11, 'OpenAI Says DALL-E Is Generating Over 2 Million Images a Day—and That’s Just Table Stakes', 11, '2018-12-10', 02, 4875, 'The venerable stock image site, Getty, boasts a catalog of 80 million images. Shutterstock, a rival of Getty, offers 415 million images. It took a few decades to build up these prodigious libraries.'),
+(12, 'This Week’s Awesome Tech Stories From Around the Web (Through July 30)', 12, '2019-05-15', 02, 4685, 'From today, the Alphabet-owned AI lab is offering its database of over 200 million proteins to anyone for free. …The update includes structures for ‘plants, bacteria, animals, and many, many other organisms, opening up huge opportunities for AlphaFold to have impact on important issues such as sustainability, fuel, food insecurity, and neglected diseases,’ Demis Hassabis, DeepMind’s founder and CEO, told reporters on a call this week.'),
+(13, 'This Exoskeleton Uses AI to Help People Walk Faster With Less Energy', 13, '2018-12-17', 02, 2575, 'El crédito al sector privado en México actualmente se encuentra en niveles bajos comparados con sus pares latinoamericanos. En México, el crédito al sector privado entre el PIB se ubica en 36 por ciento, comparado con 60 por ciento en Brasil, 113 por ciento en Chile y 48 por ciento en Colombia (datos del FMI para 2017).'),
+(14, '800,000 Neurons in a Dish Learned to Play Pong in Just Five Minutes', 14, '2017-03-18', 02, 2765, 'A dish of living brain cells has learned to play the 1970s arcade game Pong. About 800,000 cells linked to a computer gradually learned to sense the position of the games electronic ball and control a virtual paddle, a team reports in the journal Neuron.'),
+(15, 'This Week’s Awesome Tech Stories From Around the Web (Through August 6)', 15, '2018-05-18', 02, 7681, '‘I think there’s no doubt that 90% of what the brain does is self-supervised learning,’ said [the Quebec Artificial Intelligence Institute’s] Blake Richards. Biological brains are thought to be continually predicting, say, an object’s future location as it moves, or the next word in a sentence, just as a self-supervised learning algorithm attempts to predict the gap in an image or a segment of text. And brains learn from their mistakes on their own, too—only a small part of our brain’s feedback comes from an external source saying, essentially, ‘wrong answer’'),
+(16, 'Fintech es el futuro de la economía', 16, '2018-07-07', 01, 4825, 'Todos somos muy conscientes de que las computadoras son ahora una parte integral de nuestras vidas. Hoy en día, la tecnología ha avanzado tanto que un software puede realizar tareas como los humanos e incluso tener una alta tasa de éxito al hacerlo.'),
+(17, 'El liderazgo después de la pandemia', 17, '2018-11-18', 01, 7624, 'Todos somos muy conscientes de que las computadoras son ahora una parte integral de nuestras vidas. Hoy en día, la tecnología ha avanzado tanto que un software puede realizar tareas como los humanos e incluso tener una alta tasa de éxito al hacerlo.'),
+(18, 'Biofeedback y Neurofeedback, los nuevos jugadores contra el estrés', 18, '2021-04-13', 01, 78955, 'Todos somos muy conscientes de que las computadoras son ahora una parte integral de nuestras vidas. Hoy en día, la tecnología ha avanzado tanto que un software puede realizar tareas como los humanos e incluso tener una alta tasa de éxito al hacerlo.'),
+(19, 'La inteligencia Artificial como herramienta contra el Parkinson', 19, '2018-12-11', 01, 4187, 'Todos somos muy conscientes de que las computadoras son ahora una parte integral de nuestras vidas. Hoy en día, la tecnología ha avanzado tanto que un software puede realizar tareas como los humanos e incluso tener una alta tasa de éxito al hacerlo.'),
+(20, 'Olvidar para mejorar, así es el unlearning empresarial', 20, '2023-01-04', 01, 4377, 'Fintech es el futuro de la economía'),
+(21, '¿Cómo será el trabajo después del COVID?', 21, '2018-04-02', 01, 4485, 'El Internet de las cosas es un tema que poco a poco ha cobrado mayor relevancia técnica, social y económica. Actualmente es posible combinar productos de consumo, bienes duraderos, automóviles, camiones, componentes industriales, sensores y otros objetos de uso cotidiano con conectividad a Internet y potentes capacidades de análisis de datos que prometen transformar el modo en que trabajamos, vivimos y avanzamos.'),
+(22, '3 Empresas que han usado el Internet de las cosas a su favor. ¿Tu empresa será la cuarta?', 22, '2021-04-22', 01, 4785, 'El Internet de las cosas es un tema que poco a poco ha cobrado mayor relevancia técnica, social y económica. Actualmente es posible combinar productos de consumo, bienes duraderos, automóviles, camiones, componentes industriales, sensores y otros objetos de uso cotidiano con conectividad a Internet y potentes capacidades de análisis de datos que prometen transformar el modo en que trabajamos, vivimos y avanzamos.'),
+(23, '3 Medidas de ciberseguridad para blindar tu empresa', 23, '2014-06-19', 01, 4782, 'El crédito al sector privado en México actualmente se encuentra en niveles bajos comparados con sus pares latinoamericanos. En México, el crédito al sector privado entre el PIB se ubica en 36 por ciento, comparado con 60 por ciento en Brasil, 113 por ciento en Chile y 48 por ciento en Colombia'),
+(24, 'Medicina Personalizada, el arma secreta de la salud', 24, '2017-09-19', 01, 1752, 'Desde su surgimiento, la biotecnología ha tenido como propósito resolver una gran variedad de problemáticas del hombre que antes parecían impensables, año con año, esta rama interdisciplinaria se llena de nuevos descubrimientos que nos han dejado ver avances científicos que para muchos podrían parecer producto de la ciencia ficción y que nos maravillan por la increíble gama de posibilidades que le abren al desarrollo humano. Mucho de ese progreso se puede notar en avances en la medicina personalizada, un nuevo concepto de tratamiento que tiene la finalidad de asegurar que los pacientes reciban las atenciones más adecuadas para afecciones específicas, de acuerdo a su composición genética y otras características médicas.'),
+(25, 'Estrés Laboral en 2021', 25,'2014-08-15', 01, 0568, 'De acuerdo con un estudio de la Organización Internacional del Trabajo del 2021, reveló que México es uno de los países con mayor estrés laboral junto a Estados Unidos y China. Por su lado, la Organización Mundial de la Salud (OMS) propuso el estrés como una de las enfermedades del siglo XXI.'),
+(26, 'Un negocio con Inteligencia Artificial', 26, '2017-04-12', 01, 1245, 'Todos somos muy conscientes de que las computadoras son ahora una parte integral de nuestras vidas. Hoy en día, la tecnología ha avanzado tanto que un software puede realizar tareas como los humanos e incluso tener una alta tasa de éxito al hacerlo.'),
+(27, 'These 2021 Biotech Breakthroughs Will Shape the Future of Health and Medicine', 27, '2019-11-13', 02, 2578, 'It’s that time of year again! With 2021 behind us, we’re going down memory lane to highlight biotech innovations that shaped the year—with impact that will likely reverberate for many years to come. Covid-19 dominated the news, but science didn’t stand still.'),
+(28, 'Moderna Will Develop mRNA Vaccines for 15 of the World’s Worst Diseases', 28, '2019-12-10', 02, 4752, 'Moderna Inc (MRNA.O) said on Monday it plans to develop and begin testing vaccines targeting 15 of the worlds most worrisome pathogens by 2025 and will permanently wave its COVID-19 vaccine patents for shots intended for certain low- and middle-income countries.'),
+(29, 'Estonia Is a ‘Digital Republic’—What That Means and Why It May Be Everyone’s Future', 29, '2018-07-06', 02, 5785, 'People around the globe have been watching the build up to the US election with disbelief. Particularly confusing to many is the furore over postal ballots, which the US president, Donald Trump is insisting will lead to large-scale voter fraud – despite a complete lack of evidence to back this. And yet this issue has become a central feature of the debate.'),
+(30, 'The UK May Build a £16 Billion Solar Power Station in Space. Here’s How It Would Work', 30, '2018-04-27', 02, 4785, 'Space-based solar power involves collecting solar energy in space and transferring it to Earth. While the idea itself is not new, recent technological advances have made this prospect more achievable.');
 
 DROP TABLE IF EXISTS eventos;
 CREATE TABLE eventos(
