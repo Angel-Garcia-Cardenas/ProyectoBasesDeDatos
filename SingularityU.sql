@@ -231,19 +231,19 @@ CREATE TABLE idioma(
     
 INSERT INTO idioma (idIdioma, idioma) VALUES
 (01, 'Español'),
-(02, 'Inglés'),
+(02, 'Inglés');
 
 DROP TABLE IF EXISTS articulos;
 CREATE TABLE articulos(
     idArticulo int(10) unsigned NOT NULL,
     titulo varchar(400) NOT NULL,
-    autor int,
+    autor int(5) NOT NULL,
     fechaPublicacion date NOT NULL,
-    volumen int NOT NULL;
-    abstract varchar NOT NULL;
-    idioma int(5) NOT NULL;
+    volumen int NOT NULL,
+    abstract varchar(400) NOT NULL,
+    idioma int(5) NOT NULL,
     PRIMARY KEY (idArticulo),
-    FOREIGN KEY (autor) REFERENCES autor(idAutor)
+    FOREIGN KEY (autor) REFERENCES autor(idAutor),
     FOREIGN KEY (idioma) REFERENCES idioma(idIdioma));
 
 INSERT INTO articulos (idArticulo, titulo, autor, fechaPublicacion, idioma, volumen, abstract) VALUES
